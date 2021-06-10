@@ -58,7 +58,7 @@ public class ClientService {
 			entity = repository.save(entity);
 			return new ClientDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found "+ id);
+			throw new EntityNotFoundException("Id not found "+ id);
 		}
 	}
 	
@@ -66,7 +66,7 @@ public class ClientService {
 		try {
 			repository.deleteById(id);
 		}catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Id not found "+ id);
+			throw new EntityNotFoundException("Id not found "+ id);
 		}catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Integrityy violation");
 		}
